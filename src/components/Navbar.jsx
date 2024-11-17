@@ -7,7 +7,7 @@ export default function Navbar() {
       <div>NAME</div>
       <div className="space-x-5">
         <Link to={"/"}>Home</Link>
-        <Link to={"/profile"}>My Profile</Link>
+        <Link to={"/auth/profile"}>My Profile</Link>
       </div>
 
       <Link to={'/auth/login'} className="btn bg-[#CB8461] w-[140px]">Login</Link>

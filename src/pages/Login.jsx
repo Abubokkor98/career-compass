@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
+    const form = new FormData(e.target);
+    const email = form.get('email');
+    const password = form.get('password');
+    console.log({email,password});
   };
 
   return (
-    <div className="min-h-full flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-center">
       <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10">
         <h2 className="text-2xl font-semibold text-center">
           Login your account

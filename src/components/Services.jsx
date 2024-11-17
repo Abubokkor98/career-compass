@@ -1,10 +1,14 @@
-import React from 'react'
-import { useLoaderData } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import ServiceCard from './ServiceCard';
 
 export default function Services() {
-    const services = useLoaderData();
-    console.log(services);
+  const [services, setServices] = useState([]);
+    useEffect(()=>{
+      fetch('data.json')
+      .then(res=>res.json())
+      .then(services=>setServices(services))
+    },[])
+    // console.log(services);
   return (
     <div>
         <h2 className='text-3xl font-bold'>Our Services {services.length}</h2>

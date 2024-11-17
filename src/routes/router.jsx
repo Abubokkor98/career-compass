@@ -6,17 +6,18 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ErrorPage from "../pages/ErrorPage";
 import AuthLayout from "../layouts/AuthLayout";
+import MyProfile from "../pages/MyProfile";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout></HomeLayout>,
-    errorElement:<ErrorPage></ErrorPage>,
+    // errorElement:<ErrorPage></ErrorPage>,
     children: [
         {
             path: '/',
             element: <Services></Services>,
-            loader: () => fetch('data.json')
+            // loader: () => fetch('data.json')
         }
     ]
   },
@@ -31,7 +32,12 @@ export const router = createBrowserRouter([
           {
             path: '/auth/register',
             element: <Register></Register>,
+          },
+          {
+            path: '/auth/profile',
+            element: <MyProfile></MyProfile>,
           }
     ]
-  }
+  },
+  
 ]);
