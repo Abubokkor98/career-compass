@@ -5,6 +5,7 @@ import Services from "../components/Services";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ErrorPage from "../pages/ErrorPage";
+import AuthLayout from "../layouts/AuthLayout";
 
 export const router = createBrowserRouter([
   {
@@ -20,11 +21,17 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    path: '/login',
-    element: <Login></Login>,
-  },
-  {
-    path: '/register',
-    element: <Register></Register>,
+    path: '/auth',
+    element: <AuthLayout></AuthLayout>,
+    children: [
+        {
+            path: '/auth/login',
+            element: <Login></Login>,
+          },
+          {
+            path: '/auth/register',
+            element: <Register></Register>,
+          }
+    ]
   }
 ]);

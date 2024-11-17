@@ -10,7 +10,7 @@ export default function Navbar() {
         <Link to={"/profile"}>My Profile</Link>
       </div>
 
-      <button className="btn bg-[#CB8461] w-[140px]">Login</button>
+      <Link to={'/auth/login'} className="btn bg-[#CB8461] w-[140px]">Login</Link>
     </div>
   );
 }
