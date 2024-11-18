@@ -4,7 +4,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 export default function Login() {
 
-  const {createNewUser} = useContext(AuthContext);
+  const {loginUser} = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -13,6 +13,14 @@ export default function Login() {
     const password = form.get('password');
     console.log({email,password});
 
+    // login user
+    loginUser(email, password)
+    .then(result=>{
+      const user = result.user;
+    })
+.catch(error=>{
+  console.log('ERROR',error.message);
+})
   };
 
   return (
