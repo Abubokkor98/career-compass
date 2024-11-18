@@ -13,7 +13,7 @@ export default function ServiceCard({ service }) {
     rating,
   } = service;
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg overflow-hidden p-1">
+    <div className=" bg-white border border-gray-200 rounded-lg overflow-hidden p-1">
       <img className="w-full h-48 rounded-lg object-cover" src={image} alt={serviceName} />
       <div className="p-4">
         <h3 className="text-xl font-bold mb-2">{serviceName}</h3>
