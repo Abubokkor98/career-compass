@@ -8,6 +8,7 @@ import ErrorPage from "../pages/ErrorPage";
 import AuthLayout from "../layouts/AuthLayout";
 import MyProfile from "../pages/MyProfile";
 import Details from "../pages/Details";
+import Clients from "../components/Clients";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,11 @@ export const router = createBrowserRouter([
           return singleData;
         },
       },
+      {
+        path: "/",
+        element: <Clients></Clients>,
+      }
+      
     ],
   },
   {
@@ -50,5 +56,6 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
 
 ]);
