@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import ErrorPage from "../pages/ErrorPage";
 import AuthLayout from "../layouts/AuthLayout";
 import MyProfile from "../pages/MyProfile";
+import Details from "../pages/Details";
 
 export const router = createBrowserRouter([
   {
@@ -14,30 +15,40 @@ export const router = createBrowserRouter([
     element: <HomeLayout></HomeLayout>,
     // errorElement:<ErrorPage></ErrorPage>,
     children: [
-        {
-            path: '/',
-            element: <Services></Services>,
-            // loader: () => fetch('data.json')
-        }
-    ]
+      {
+        path: "/",
+        element: <Services></Services>,
+        // loader: () => fetch('data.json')
+      },
+      {
+        path: "/details/:id",
+        element: <Details></Details>,
+        loader: async ({ params }) => {
+          const res = await fetch("/data.json")
+          const data = await res.json()
+          const singleData = data.find(d=>d.id==params.id)
+          return singleData;
+        },
+      },
+    ],
   },
   {
-    path: '/auth',
+    path: "/auth",
     element: <AuthLayout></AuthLayout>,
     children: [
-        {
-            path: '/auth/login',
-            element: <Login></Login>,
-          },
-          {
-            path: '/auth/register',
-            element: <Register></Register>,
-          },
-          {
-            path: '/auth/profile',
-            element: <MyProfile></MyProfile>,
-          }
-    ]
+      {
+        path: "/auth/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/auth/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/auth/profile",
+        element: <MyProfile></MyProfile>,
+      },
+    ],
   },
-  
+
 ]);

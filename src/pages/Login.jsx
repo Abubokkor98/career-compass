@@ -1,26 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import GoogleLogin from "../components/GoogleLogin";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Login() {
-
-  const {loginUser} = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
-    const email = form.get('email');
-    const password = form.get('password');
-    console.log({email,password});
-
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log({ email, password });
     // login user
     loginUser(email, password)
-    .then(result=>{
-      const user = result.user;
-    })
-.catch(error=>{
-  console.log('ERROR',error.message);
-})
+      .then((result) => {
+        const user = result.user;
+      })
+      .catch((error) => {
+        console.log("ERROR", error.message);
+      });
   };
 
   return (
@@ -42,17 +43,23 @@ export default function Login() {
               required
             />
           </div>
-          <div className="form-control">
+          <div className="form-control relative">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
             <input
               name="password"
-              type="password"
-              placeholder="password"
+              type={showPassword ? "text" : "password"}
+              placeholder={"password"}
               className="input input-bordered"
               required
             />
+            <button
+              onClick={() => setShowPassword(!showPassword)}
+              className="btn btn-xs absolute right-4 top-12"
+            >
+              {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+            </button>
             <label className="label">
               <a href="#" className="label-text-alt link link-hover">
                 Forgot password?
@@ -68,6 +75,10 @@ export default function Login() {
           <Link to={"/auth/register"} className="text-red-600">
             Register
           </Link>
+        </p>
+        {/* social login */}
+        <p className="mt-2">
+          <GoogleLogin></GoogleLogin>
         </p>
       </div>
     </div>
