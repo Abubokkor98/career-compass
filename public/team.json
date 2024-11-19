@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "name": "Dr. Sarah Parker",
+      "role": "Career Coach & Counselor",
+      "image": "https://i.ibb.co.com/CKX8Pjf/women3.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Mr. John Carter",
+      "role": "Resume Specialist",
+      "image": "https://i.ibb.co.com/T2cH706/man3.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Ms. Emily Thompson",
+      "role": "Group Counseling Facilitator",
+      "image": "https://i.ibb.co.com/kypRBBH/man2.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Dr. Kevin Smith",
+      "role": "Mock Interview Coach",
+      "image": "https://i.ibb.co.com/m85sBT7/man1.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Dr. Sophia Wilson",
+      "role": "Negotiation Expert",
+      "image": "https://i.ibb.co.com/db8x1kg/women2.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Ms. Jennifer Lopez",
+      "role": "Career Planning Specialist",
+      "image": "https://i.ibb.co.com/0tGwf7s/women1.jpg"
+    }
+  ]
+  

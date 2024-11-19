@@ -1,18 +1,13 @@
 import React, { useRef } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import slider1 from "../assets/slider1.jpg";
 import slider2 from "../assets/slider2.jpg";
 import slider3 from "../assets/slider3.jpg";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import "../style.css";
-
-// Import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 export default function Slider() {

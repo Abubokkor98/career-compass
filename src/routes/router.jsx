@@ -21,22 +21,23 @@ export const router = createBrowserRouter([
         element: <Services></Services>,
         // loader: () => fetch('data.json')
       },
-      {
-        path: "/details/:id",
-        element: <Details></Details>,
-        loader: async ({ params }) => {
-          const res = await fetch("/data.json")
-          const data = await res.json()
-          const singleData = data.find(d=>d.id==params.id)
-          return singleData;
-        },
-      },
+      
       {
         path: "/",
         element: <Clients></Clients>,
       }
       
     ],
+  },
+  {
+    path: "/details/:id",
+    element: <Details></Details>,
+    loader: async ({ params }) => {
+      const res = await fetch("/data.json")
+      const data = await res.json()
+      const singleData = data.find(d=>d.id==params.id)
+      return singleData;
+    },
   },
   {
     path: "/auth",
