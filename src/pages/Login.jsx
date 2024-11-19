@@ -1,15 +1,19 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import GoogleLogin from "../components/GoogleLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Login() {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser,setUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [error,setError] = useState('');
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setError('')
     const form = new FormData(e.target);
     const email = form.get("email");
     const password = form.get("password");
@@ -18,9 +22,11 @@ export default function Login() {
     loginUser(email, password)
       .then((result) => {
         const user = result.user;
+        setUser(user);
+        navigate(location?.state ? location.state : '/')
       })
-      .catch((error) => {
-        console.log("ERROR", error.message);
+      .catch((err) => {
+        setError({...error, login:err.code});
       });
   };
 
@@ -76,6 +82,9 @@ export default function Login() {
             Register
           </Link>
         </p>
+        {
+          error.login && alert(error.login)
+        }
         {/* social login */}
         <p className="mt-2">
           <GoogleLogin></GoogleLogin>

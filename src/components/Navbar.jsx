@@ -18,10 +18,8 @@ export default function Navbar() {
 
   return (
     <div className="flex justify-between items-center text-white bg-[#25434D] p-5">
-      {/* Website Name */}
-      <div className="text-lg font-bold">NAME</div>
+      <div className="text-lg font-bold">Career Compass</div>
 
-      {/* Navigation Links */}
       <div className="space-x-5">
         <NavLink
           to="/"
@@ -41,7 +39,6 @@ export default function Navbar() {
         </NavLink>
       </div>
 
-      {/* User Controls */}
       {user ? (
         <div className="flex items-center space-x-4">
           {/* User Image or Placeholder */}
@@ -55,12 +52,12 @@ export default function Navbar() {
             ) : (
               <FaUserCircle
                 className="w-10 h-10 text-white bg-gray-400 rounded-full border-2 border-white cursor-pointer"
-                title="User"
+                title={user.displayName}
               />
             )}
             {/* Hover Tooltip with User Name */}
             <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-sm rounded-md px-3 py-1 opacity-0 group-hover:opacity-100">
-              {user.displayName || "User"}
+              {user.displayName}
             </div>
           </div>
           {/* Logout Button */}

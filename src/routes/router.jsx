@@ -9,33 +9,37 @@ import AuthLayout from "../layouts/AuthLayout";
 import MyProfile from "../pages/MyProfile";
 import Details from "../pages/Details";
 import Clients from "../components/Clients";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout></HomeLayout>,
-    // errorElement:<ErrorPage></ErrorPage>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
         element: <Services></Services>,
         // loader: () => fetch('data.json')
       },
-      
+
       {
         path: "/",
         element: <Clients></Clients>,
-      }
-      
+      },
     ],
   },
   {
     path: "/details/:id",
-    element: <Details></Details>,
+    element: (
+      <PrivateRoute>
+        <Details></Details>
+      </PrivateRoute>
+    ),
     loader: async ({ params }) => {
-      const res = await fetch("/data.json")
-      const data = await res.json()
-      const singleData = data.find(d=>d.id==params.id)
+      const res = await fetch("/data.json");
+      const data = await res.json();
+      const singleData = data.find((d) => d.id == params.id);
       return singleData;
     },
   },
@@ -57,6 +61,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
-
 ]);

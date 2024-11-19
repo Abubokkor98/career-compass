@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { FaGoogle } from "react-icons/fa6";
+import { AuthContext } from '../provider/AuthProvider';
 export default function GoogleLogin() {
+
+  const {googleSignIn,setUser} = useContext(AuthContext);
+  const [error,setError] = useState('');
+
+
+  const handleSignIn = ()=>{
+    googleSignIn()
+    .then((result)=>{
+      const user = (result.user);
+      setUser(user);
+    })
+    .catch(error=>{
+      setError(error.message);
+    })
+  }
+
   return (
     <div>
     <div className="*:w-full space-y-2">
-    <button className="btn">
+    <button onClick={handleSignIn} className="btn">
       <FaGoogle />
       Login with Google
     </button>
+    {error&& alert(error)}
     </div>
   </div>
   )

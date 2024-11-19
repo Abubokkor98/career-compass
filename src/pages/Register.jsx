@@ -2,11 +2,14 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import GoogleLogin from "../components/GoogleLogin";
 
 
 export default function Register() {
-  const { createNewUser } = useContext(AuthContext);
+  const { createNewUser, setUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [error,setError] = useState('');
+
 
 
   const handleRegister = (e) => {
@@ -22,10 +25,11 @@ export default function Register() {
     createNewUser(email, password)
       .then((result) => {
         const user = result.user;
+        setUser(user);
         console.log(user);
       })
       .catch((error) => {
-        console.log("ERROR", error.message);
+        setError(error.message);
       });
   };
 
@@ -83,7 +87,7 @@ export default function Register() {
             </label>
             <input
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="password"
               className="input input-bordered"
               required
@@ -105,6 +109,9 @@ export default function Register() {
             Login
           </Link>{" "}
         </p>
+        {error&& alert(error)}
+        <p className="text-center font-semibold mt-2 mb-2">OR</p>
+        <GoogleLogin></GoogleLogin>
       </div>
     </div>
   );
