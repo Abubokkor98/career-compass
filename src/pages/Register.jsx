@@ -1,19 +1,20 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import GoogleLogin from "../components/GoogleLogin";
 
-
 export default function Register() {
-  const { createNewUser, setUser } = useContext(AuthContext);
+  const { createNewUser, setUser,updateUserProfile  } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
-  const [error,setError] = useState('');
-
-
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate()
 
   const handleRegister = (e) => {
     e.preventDefault();
+    setError("");
+    setSuccess(false);
 
     const form = new FormData(e.target);
     const name = form.get("name");
@@ -21,15 +22,36 @@ export default function Register() {
     const email = form.get("email");
     const password = form.get("password");
     console.log({ name, email, photo, password });
-    // call create newUser function
+
+    // Length validation
+    if (password.length < 6) {
+      setError("Password must be 6 characters or longer.");
+      return;
+    }
+
+    // Regex validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password must contain at least one uppercase and one lowercase letter."
+      );
+      return;
+    }
+
+    // Call createNewUser function
     createNewUser(email, password)
       .then((result) => {
         const user = result.user;
         setUser(user);
+        setSuccess(true);
+        alert("User registered successfully.");
+        navigate('/');
         console.log(user);
+        updateUserProfile({displayName: name, photoURL:photo});
       })
       .catch((error) => {
         setError(error.message);
+        setSuccess(false);
       });
   };
 
@@ -40,7 +62,7 @@ export default function Register() {
           Register your account
         </h2>
         <form onSubmit={handleRegister} className="card-body">
-          {/* name input */}
+          {/* Name input */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Your Name</span>
@@ -53,7 +75,7 @@ export default function Register() {
               required
             />
           </div>
-          {/* email input */}
+          {/* Email input */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
@@ -66,7 +88,7 @@ export default function Register() {
               required
             />
           </div>
-          {/* photo input */}
+          {/* Photo input */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Photo URL</span>
@@ -80,7 +102,7 @@ export default function Register() {
             />
           </div>
 
-          {/* password input */}
+          {/* Password input */}
           <div className="form-control relative">
             <label className="label">
               <span className="label-text">Password</span>
@@ -93,25 +115,28 @@ export default function Register() {
               required
             />
             <button
+              type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="btn btn-xs absolute right-4 top-12"
             >
-              {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
+            {error && <p className="text-red-600 text-xs mt-1">{error}</p>}
           </div>
+
           <div className="form-control mt-6">
             <button className="btn btn-neutral rounded-none">Register</button>
           </div>
         </form>
         <p className="text-center font-semibold">
-          Already Have An Account ?{" "}
+          Already Have An Account?{" "}
           <Link to={"/auth/login"} className="text-red-600">
             Login
-          </Link>{" "}
+          </Link>
         </p>
-        {error&& alert(error)}
+
         <p className="text-center font-semibold mt-2 mb-2">OR</p>
-        <GoogleLogin></GoogleLogin>
+        <GoogleLogin />
       </div>
     </div>
   );

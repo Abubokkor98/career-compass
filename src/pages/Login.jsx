@@ -1,15 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import GoogleLogin from "../components/GoogleLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Login() {
-  const { loginUser,setUser } = useContext(AuthContext);
+  const { loginUser,setUser,forgetPassword } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error,setError] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
+  const emailRef = useRef();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -23,12 +24,42 @@ export default function Login() {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        navigate(location?.state ? location.state : '/')
+        navigate(location?.state ? location.state : '/');
+        alert('Successfully login.')
       })
       .catch((err) => {
         setError({...error, login:err.code});
       });
   };
+
+  //forget pass
+  const handleForgetPass = () => {
+    const email = emailRef.current.value;
+    navigate("/auth/forget-password", { state: { email } });
+  };
+
+//   const handleForgetPass = () => {
+//     const email = emailRef.current.value
+//     if(!email){
+//       alert('provide a valid email')
+//     }
+//     else{
+//       forgetPassword(email)
+//       .then(() => {
+//           // Password reset email sent!
+//           // ..
+//           alert('Password reset email sent')
+//       })
+//       .catch((error) => {
+//           const errorCode = error.code;
+//           const errorMessage = error.message;
+//           alert(errorMessage);
+//           // ..
+//       });
+//     }
+// }
+
+
 
   return (
     <div className="min-h-screen flex justify-center items-center">
@@ -45,6 +76,7 @@ export default function Login() {
               type="email"
               name="email"
               placeholder="email"
+              ref={emailRef}
               className="input input-bordered"
               required
             />
@@ -66,10 +98,15 @@ export default function Login() {
             >
               {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
             </button>
+            {
+              error.login && (
+                <p className="text-red-600 text-xs">{error.login}</p>
+              )
+            }
             <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
+              <button onClick={handleForgetPass} className="label-text-alt link link-hover">
                 Forgot password?
-              </a>
+              </button>
             </label>
           </div>
           <div className="form-control mt-6">
@@ -82,9 +119,6 @@ export default function Login() {
             Register
           </Link>
         </p>
-        {
-          error.login && alert(error.login)
-        }
         {/* social login */}
         <p className="mt-2">
           <GoogleLogin></GoogleLogin>

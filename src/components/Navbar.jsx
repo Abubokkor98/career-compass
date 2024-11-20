@@ -4,11 +4,12 @@ import { AuthContext } from "../provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 
 export default function Navbar() {
-  const { user, logoutUser } = useContext(AuthContext);
+  const { user, logoutUser,setUser } = useContext(AuthContext);
 
   const handleLogout = () => {
     logoutUser()
       .then(() => {
+        setUser(null);
         alert("User logged out");
       })
       .catch((error) => {
