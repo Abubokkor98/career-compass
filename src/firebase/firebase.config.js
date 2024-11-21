@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBhRD6B7uEk__BqIrZqtCcNh07W7eTFWog",
-  authDomain: "career-compass-auth.firebaseapp.com",
-  projectId: "career-compass-auth",
-  storageBucket: "career-compass-auth.firebasestorage.app",
-  messagingSenderId: "766685566735",
-  appId: "1:766685566735:web:7208b3b47e6d795c62507a"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase

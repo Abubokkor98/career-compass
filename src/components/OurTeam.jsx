@@ -11,7 +11,7 @@ export default function OurTeam() {
       }, []);
 
   return (
-    <div className='w-full bg-gradient-to-b from-purple-100 to-blue-200'>
+    <div className='w-full bg-gradient-to-b from-purple-100 to-blue-200 pb-20'>
         <div className='w-9/12 mx-auto '>
         <h1 className='text-center text-5xl font-bold mb-10 pt-16'>
         Meet our consultant experts.   

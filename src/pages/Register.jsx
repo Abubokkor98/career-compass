@@ -24,7 +24,6 @@ export default function Register() {
     const photo = form.get("photo");
     const email = form.get("email");
     const password = form.get("password");
-    console.log({ name, email, photo, password });
 
     // Length validation
     if (password.length < 6) {
@@ -49,7 +48,7 @@ export default function Register() {
         setSuccess(true);
         toast.success("User registered successfully.");
         navigate('/');
-        console.log(user);
+  
         updateUserProfile({displayName: name, photoURL:photo});
       })
       .catch((error) => {

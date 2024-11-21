@@ -10,11 +10,11 @@ import { ToastContainer } from 'react-toastify'
 
 export default function HomeLayout() {
   return (
-    <div className='max-w-screen-xl'>
+    <div className='max-w-screen-2xl bg-[#cbdbde] mx-auto'>
       <Helmet>
         <title>Home | Career Compass</title>
       </Helmet>
-        {/* navbar */}
+       
         <Navbar></Navbar>
         <Slider></Slider>
 

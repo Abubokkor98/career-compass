@@ -21,7 +21,6 @@ export default function Login() {
     const form = new FormData(e.target);
     const email = form.get("email");
     const password = form.get("password");
-    console.log({ email, password });
     // login user
     loginUser(email, password)
       .then((result) => {

@@ -12,7 +12,7 @@ export default function Clients() {
   
     return (
       <div className="bg-gradient-to-b from-blue-100 to-purple-100 p-10">
-        <h2 className="text-center text-2xl font-bold mb-8">
+        <h2 className="text-center text-2xl font-bold mb-16 pt-14">
           What Our Clients Say About Our Digital Services
         </h2>
         <div className="relative">

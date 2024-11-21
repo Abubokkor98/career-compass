@@ -12,30 +12,22 @@ export default function Client({ client, position }) {
   return (
     <div
       data-aos="fade-up"
-      className={`relative flex items-center ${
-        position === "left" ? "justify-start" : "justify-end"
+      className={`relative flex flex-col items-center mb-10 lg:mb-4 space-y-6 lg:space-y-2 ${
+        position === "left" ? "md:flex-row-reverse" : "md:flex-row"
       }`}
     >
-      {/* Vertical Timeline Line */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-300"></div>
-
-      {/* Content */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-300 hidden md:block"></div>
       <div
-        className={`flex items-center space-x-6 max-w-xl p-4 rounded-lg shadow-lg bg-white ${
-          position === "left" ? "flex-row-reverse" : ""
+        className={`flex flex-col items-center space-y-4 lg:space-y-2 p-6 rounded-lg shadow-lg bg-white md:max-w-xl ${
+          position === "left" ? "md:ml-auto" : "md:mr-auto"
         }`}
       >
-        {/* Client Photo */}
         <img
           src={photo}
           alt={clientName}
-          className={`w-16 h-16 rounded-full border-4 border-purple-500 ${
-            position === "left" ? "ml-4" : "mr-4"
-          }`}
+          className="w-16 h-16 rounded-full border-4 border-purple-500"
         />
-
-        {/* Text Content */}
-        <div className={`${position === "left" ? "text-right" : "text-left"}`}>
+        <div className="text-center">
           <p className="text-sm text-gray-500">
             <strong>Date:</strong> {date}
           </p>
@@ -43,8 +35,6 @@ export default function Client({ client, position }) {
           <p className="text-gray-700 text-sm mt-2">{feedback}</p>
         </div>
       </div>
-
-      {/* Timeline Marker */}
       <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-white border-4 border-purple-500 rounded-full shadow-md flex justify-center items-center z-10">
         <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
       </div>
