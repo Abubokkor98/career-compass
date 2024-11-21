@@ -3,6 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import GoogleLogin from "../components/GoogleLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
+
 
 export default function Login() {
   const { loginUser,setUser,forgetPassword } = useContext(AuthContext);
@@ -25,7 +28,7 @@ export default function Login() {
         const user = result.user;
         setUser(user);
         navigate(location?.state ? location.state : '/');
-        alert('Successfully login.')
+        toast.success('Successfully login.')
       })
       .catch((err) => {
         setError({...error, login:err.code});
@@ -38,31 +41,14 @@ export default function Login() {
     navigate("/auth/forget-password", { state: { email } });
   };
 
-//   const handleForgetPass = () => {
-//     const email = emailRef.current.value
-//     if(!email){
-//       alert('provide a valid email')
-//     }
-//     else{
-//       forgetPassword(email)
-//       .then(() => {
-//           // Password reset email sent!
-//           // ..
-//           alert('Password reset email sent')
-//       })
-//       .catch((error) => {
-//           const errorCode = error.code;
-//           const errorMessage = error.message;
-//           alert(errorMessage);
-//           // ..
-//       });
-//     }
-// }
 
 
 
   return (
     <div className="min-h-screen flex justify-center items-center">
+      <Helmet>
+        <title>Login | Career Compass</title>
+      </Helmet>
       <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10">
         <h2 className="text-2xl font-semibold text-center">
           Login your account

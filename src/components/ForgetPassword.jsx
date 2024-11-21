@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 
 export default function ForgetPassword() {
   const emailRef = useRef();
@@ -19,21 +21,24 @@ export default function ForgetPassword() {
     const email = emailRef.current.value;
 
     if (!email) {
-      alert("Please enter your email address!");
+      toast.alert("Please enter your email address!");
       return;
     }
 
     forgetPassword(email)
       .then(() => {
-        alert("Password reset email sent!");
+        toast.alert("Password reset email sent!");
       })
       .catch((err) => {
-        alert(err.message);
+        toast.alert(err.message);
       });
   };
 
   return (
     <div className="min-h-screen flex justify-center items-center">
+      <Helmet>
+        <title>ForgetPassword | Career Compass</title>
+      </Helmet>
       <div className="card bg-base-100 w-full max-w-lg p-10">
         <h2 className="text-2xl font-semibold text-center">Reset Password</h2>
         <form onSubmit={handleResetPassword} className="space-y-4">

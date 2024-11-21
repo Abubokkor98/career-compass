@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { FaGoogle } from "react-icons/fa6";
 import { AuthContext } from '../provider/AuthProvider';
+import toast from 'react-hot-toast';
 export default function GoogleLogin() {
 
   const {googleSignIn,setUser} = useContext(AuthContext);
@@ -25,7 +26,7 @@ export default function GoogleLogin() {
       <FaGoogle />
       Login with Google
     </button>
-    {error&& alert(error)}
+    {error&& toast.error(error)}
     </div>
   </div>
   )

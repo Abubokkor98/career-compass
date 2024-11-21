@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 export default function MyProfile() {
   const { user, updateUserProfile, setUser } = useContext(AuthContext);
@@ -25,6 +26,9 @@ export default function MyProfile() {
 
   return (
     <div className="min-h-screen flex justify-center items-center">
+      <Helmet>
+        <title>My Profile | Career Compass</title>
+      </Helmet>
       <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10">
         <h2 className="text-2xl font-semibold text-center">My Profile</h2>
 

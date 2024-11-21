@@ -5,6 +5,7 @@ import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet-async";
 
 export default function Details() {
   const {
@@ -31,6 +32,9 @@ const handleCommentSubmit = (e) => {
 
   return (
     <div>
+      <Helmet>
+        <title>{serviceName} | Career Compass</title>
+      </Helmet>
       <header>
         <Navbar></Navbar>
       </header>
