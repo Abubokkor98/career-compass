@@ -2,6 +2,10 @@
 
 **Career Compass** is a career counseling platform designed to guide individuals toward achieving their professional goals. The platform provides personalized recommendations, expert advice, and a streamlined user experience to help users navigate their career journey effectively.
 
+## Live Demo 🚀
+
+Check out the live version of the application: [Career Compass Live](https://career-compass-auth.web.app)
+
 ## Features ✨
 
 - **Personalized Career Recommendations**: Tailored suggestions based on user input and interests.
@@ -50,9 +54,7 @@
    ```
 6. Access the application at `http://localhost:5173`.
 
-## Live Demo 🚀
 
-Check out the live version of the application: [Career Compass Live](https://career-compass-auth.web.app)
 
 ## Folder Structure 📂
 
