@@ -102,7 +102,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - **Name**: Abu Bokkor Siddik
 - **GitHub**: [Abubokkor98](https://github.com/Abubokkor98)
-- **Email**: mail.abubokkor.com
+- **Email**: mail.abubokkor@gmail.com
 
 ---
 
